@@ -3,25 +3,24 @@ public class MusicPlayer{
     public static void main(String[] args) {
          Song s1=new Song();
          Scanner s=new Scanner(System.in);
+         s1.enter();
          while(true){
              diplayMenu();
              int x=s.nextInt();
-
              switch(x){   
-                   case 1:s1.enter();      break;
-                   case 2:s1.display();    break;
-                   case 3:s1.moviename();  break;
-                   case 4:s1.singername(); break;
-                   case 5:s1.play();       break;
-                   case 6:s1.category();   break;
-                   case 7:s1.year();       break;
-                   case 8:s1.songtitle();  break;
-                   case 9:s1.playlist();   break;
-                   case 10:s1.close();     break;
+                   case 1:s1.display();    break;
+                   case 2:s1.moviename();  break;
+                   case 3:s1.singername(); break;
+                   case 4:s1.play();       break;
+                   case 5:s1.category();   break;
+                   case 6:s1.year();       break;
+                   case 7:s1.songtitle();  break;
+                   case 8:s1.playlist();   break;
+                   case 9:s1.close();     break;
                    default:System.out.println("invalid choice"); 
             }
 
-       if(x==10) break;
+       if(x==9) break;
     } 
     s.close(); 
    }
@@ -29,16 +28,15 @@ public class MusicPlayer{
    static void diplayMenu(){
       System.out.println();
       System.out.println("Please choose an option:");
-      System.out.println("1: Enter songs into the music app");
-      System.out.println("2: Display all songs");
-      System.out.println("3: songs for specific Movie Name");
-      System.out.println("4: songs for specific Singer Name");
-      System.out.println("5: Play a song");
-      System.out.println("6: songs by Category");
-      System.out.println("7: songs by Year");
-      System.out.println("8: view Song Details");
-      System.out.println("9: Playlist");
-      System.out.println("10: exit");
+      System.out.println("1: Display all songs");
+      System.out.println("2: songs for specific Movie Name");
+      System.out.println("3: songs for specific Singer Name");
+      System.out.println("4: Play a song");
+      System.out.println("5: songs by Category");
+      System.out.println("6: songs by Year");
+      System.out.println("7: view Song Details");
+      System.out.println("8: Playlist");
+      System.out.println("9: exit");
       System.out.println();
       System.out.print("Your choice: ");
    }
@@ -49,7 +47,7 @@ public class MusicPlayer{
         HashMap<Integer,HashMap<String,String>> hm=new HashMap<>();
         Scanner s=new Scanner(System.in);
 
-
+ 
       public void enter(){ //entering the songs details
            System.out.println("Enter number of songs you want to insert into the music app:");
            int n=s.nextInt();
@@ -107,7 +105,7 @@ public class MusicPlayer{
               }
            }
            if(flag==0){
-            System.out.print("movie not found");
+            System.out.println("movie not found");
            }
         }
          
@@ -124,7 +122,7 @@ public class MusicPlayer{
                 }
              }
             if(flag==0){
-               System.out.print("No song found with "+usersinger);
+               System.out.println("No song found with "+usersinger);
             }
         }
          
@@ -157,7 +155,7 @@ public class MusicPlayer{
                     }
                 }
                 if(flag==0){
-                    System.out.print("No song found with "+usercat);
+                    System.out.println("No song found with "+usercat);
                  }
         }
 

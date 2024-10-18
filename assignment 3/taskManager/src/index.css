@@ -1,0 +1,38 @@
+body {
+    background-image: url("../task.jpg");
+}
+
+.priority-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.label-priority {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.select-priority {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f0f8ff;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.select-priority:hover {
+    background-color: #e6f7ff;
+}
+
+.select-priority:focus {
+    border-color: #007BFF;
+    outline: none;
+    background-color: #fff;
+}

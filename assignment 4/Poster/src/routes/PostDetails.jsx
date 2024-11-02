@@ -33,8 +33,18 @@ function PostDetails() {
 
 export default PostDetails;
 
-export async function loader({params}){
-   const response=await fetch('http://localhost:8080/posts/'+params.id);
-   const resData=await response.json();
-   return resData.post;
+export async function loader({ params }) {
+  try {
+    const response = await fetch('http://localhost:8080/posts/' + params.id);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch post: ${response.status} ${response.statusText}`);
+    }
+
+    const resData = await response.json();
+    return resData.post;
+  } catch (error) {
+    console.error('Error fetching post:', error);
+    throw new Response('Post not found', { status: 404 });
+  }
 }

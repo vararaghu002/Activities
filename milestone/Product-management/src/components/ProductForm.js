@@ -4,11 +4,11 @@ import dayjs from 'dayjs';
 
 const ProductForm = ({ onSubmit }) => {
   const [form] = Form.useForm();
-  const [defaultDate] = useState(dayjs()); // Initialize and store today's date in state
+  const [defaultDate] = useState(dayjs()); 
 
   const handleFinish = (values) => {
     onSubmit({ ...values, date: values.date ? values.date.format('YYYY-MM-DD') : defaultDate.format('YYYY-MM-DD') });
-    form.resetFields(); // Reset the form fields after submission
+    form.resetFields(); 
   };
 
   return (

@@ -1,4 +1,3 @@
-// HomePage.js
 import React, { useState, useEffect } from 'react';
 import { DatePicker, Input, Button, Modal } from 'antd';
 import dayjs from 'dayjs';

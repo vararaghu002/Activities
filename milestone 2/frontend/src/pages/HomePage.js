@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useMemo, useEffect } from 'react';
 import { DatePicker, Input, Button, Modal } from 'antd';
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween'; 
@@ -43,16 +43,21 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSearchClick = () => {
+  // Memoize filtered products based on dateRange and searchTerm
+  const filteredProducts = useMemo(() => {
     const [startDate, endDate] = dateRange;
-    const filtered = state.products.filter((product) => {
+    return state.products.filter((product) => {
       const productDate = dayjs(product.date);
       const matchesDateRange = productDate.isBetween(startDate, endDate, 'day', '[]');
       const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesDateRange && matchesSearch;
     });
-    filterProducts(filtered);
-  };
+  }, [dateRange, searchTerm, state.products]);
+
+  // Automatically apply filters whenever dateRange or searchTerm changes
+  useEffect(() => {
+    filterProducts(filteredProducts);
+  }, [filteredProducts, filterProducts]);
 
   const handleFormSubmit = (values) => {
     addProduct(values);
@@ -67,14 +72,17 @@ const HomePage = () => {
     <Container>
       <Title>Product Management</Title>
       <ControlRow>
-        <RangePicker value={dateRange} onChange={setDateRange} />
+        <RangePicker 
+          value={dateRange} 
+          onChange={setDateRange} 
+          disabledDate={(current) => current && current > dayjs().endOf('day')} // restrict dates up to today
+        />
         <Input
           placeholder="Search products"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{ width: 200 }}
         />
-        <Button type="primary" onClick={handleSearchClick}>Search</Button>
         <Button type="primary" onClick={() => setIsModalOpen(true)}>Add New Product</Button>
       </ControlRow>
 

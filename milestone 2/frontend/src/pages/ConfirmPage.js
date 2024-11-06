@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Button, Descriptions } from 'antd';
-// import axios from 'axios';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
@@ -71,7 +71,7 @@ const ConfirmPage = () => {
 
   const handleConfirm = async () => {
     try {
-      // await axios.post('http://localhost:8080/posts', product);
+      await axios.post('http://localhost:8080/posts', product);
       alert("Product submitted successfully!");
       navigate('/');
     } catch (error) {

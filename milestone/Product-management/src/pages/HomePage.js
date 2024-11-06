@@ -59,7 +59,7 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -68,7 +68,7 @@ const HomePage = () => {
         const products = response.data?.posts || [];
         const productsWithDates = products.map((product) => ({
           ...product,
-          date: product.date || dayjs().format('YYYY-MM-DD'), // Use product date or today's date if not present
+          date: product.date || dayjs().format('YYYY-MM-DD'),
         }));
         setProducts(productsWithDates);
         setFilteredProducts(productsWithDates);

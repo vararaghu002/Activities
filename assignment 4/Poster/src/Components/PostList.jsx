@@ -5,7 +5,7 @@ import Post from "./Post.jsx";
 import classes from './PostList.module.css'
 
 function PostList() {
-      const posts=useLoaderData();//return post data from loader function in posts.jsx
+      const posts=useLoaderData();
     
     return( 
         <>

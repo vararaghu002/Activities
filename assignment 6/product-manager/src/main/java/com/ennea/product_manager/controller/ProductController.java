@@ -17,14 +17,14 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
-    @RequestMapping("/")
-    public String greet(){
-        return "Hello World";
-    }
-
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProduct(){
         return new ResponseEntity<>(service.getAllProducts(), HttpStatus.OK);
+    }
+
+    @RequestMapping("/products/{prodid}")
+    public Product getProductById(@PathVariable int prodid){
+        return  service.getProductById(prodid);
     }
 
     @PostMapping("/product")
@@ -37,4 +37,21 @@ public class ProductController {
               return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/products")
+    public void updateproduct(@RequestBody Product prod){
+        service.updateProduct(prod);
+    }
+
+    @DeleteMapping("/products/{prodid}")
+    public void deleteProduct(@PathVariable int prodid) {
+        service.deleteProduct(prodid);
+    }
+
+    @GetMapping("/products/search")
+    public ResponseEntity<List<Product>> searchProduct(@RequestParam String keyword){
+        List<Product> products=service.searchProducts(keyword);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
 }
